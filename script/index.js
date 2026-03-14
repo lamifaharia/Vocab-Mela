@@ -6,8 +6,17 @@ const loadLessons =()=>{
 
 const loadLevelWord = (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
-    console.log(url)
-}
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayLevelWord(data.data));
+};
+
+const displayLevelWord = (words) => {
+    const wordContainer = document.getElementById("word-container");
+    wordContainer.innerHTML = "";
+
+    
+};
 
 
 const displayLesson = (lessons) => {
@@ -22,7 +31,7 @@ const displayLesson = (lessons) => {
         console.log(lesson);
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-        <button onClick="loadLevelWord(${lesson.level_no}) class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson - ${lesson.level_no}</button>
+        <button onClick="loadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lesson - ${lesson.level_no}</button>
         `;
         // 4. append into container 
     
